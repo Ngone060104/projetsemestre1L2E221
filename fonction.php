@@ -481,6 +481,135 @@ function genererNouvelIdFormation(): int
     
     return $maxId + 1;
 }
+function creerFormation():array{
+    $titre = readline("Saisir le titre : ");
+    $description = readline("Saisir la description : ");
+    $erreurs = [];
+     if (empty(trim($titre))) {
+        $erreurs[] = "Le titre est  obligatoire";
+    }elseif(!TitreUnique($titre)){
+       $erreurs[] = "Le titre existe deja";
+    }
+     if (!empty($erreurs)) {
+        return [
+            "error" => true,
+            "message" => implode("\n", $erreurs) // Affiche toutes les erreurs
+        ];
+    }
+     $newFormation = [
+        "id" => genererNouvelIdFormation(),
+        "titre" => trim($titre),
+        "description" => !empty(trim($description)) ? trim($description) :"",
+
+    ];
+     return [
+        "error" => false,
+        "message" => "Formation créé avec succés",
+        "data" => $newFormation
+    ];
+    
+}
+function ajouterFormation(): void
+{
+    $resultat = creerFormation();
+    
+    if ($resultat['error']) {
+        echo $resultat['message'] . "\n";
+        return;
+    }
+    
+    // Récupérer toutes les données
+    $datas = jsonToArray();
+    
+    // Ajouter la nouvelle formation
+    $datas["formation"][] = $resultat['data'];
+    
+    // Sauvegarder
+    arrayToJson($datas);
+    
+    echo $resultat['message'] . "\n";
+}
+
+
+function saisiEtModifierFormation(): array
+{
+
+    $formations = findAllFormation();
+    if (empty($formations)) {
+        return [
+            "error" => true,
+            "message" => "Aucune formation à modifier"
+        ];
+    }
+    afficheTousLesFormations($formations);
+    $choix = (int)readline("\n Choisir le numéro de la formation à modifier : ");
+    if (!isset($formations[$choix])) {
+        return [
+            "error" => true,
+            "message" => "formation non trouvé"
+        ];
+    }
+    $formation = $formations[$choix];
+    echo "\n -- Modification d'un etudiant -- \n";
+    $titre = readline("Titre (" . $formation["titre"] . "): ");
+    $description = readline("Desciption (" . $formation["description"] . "): ");
+
+    $formationModifier = [
+        "id" => $formation["id"],
+        "titre" => !empty($titre) ? $titre : $formation["titre"],
+        "description" => !empty($description) ? $description : $formation["description"],
+    ];
+    return modifierFormation($formationModifier);
+}
+
+
+function modifierFormation($formationModifier): array
+{
+    $erreurs = [];
+    // 1. VÉRIFICATIONS avant modification
+    // Vérifier le titre
+    if (empty($formationModifier["titre"])) {
+        $erreurs[] = "Le titre est obligatoire";
+    }elseif (!TitreUnique($formationModifier['titre'])) {
+        $erreurs[] = "Ce titre existe déjà pour une autre formation";
+    }
+
+    // Si des erreurs existent
+    if (!empty($erreurs)) {
+        return [
+            "error" => true,
+            "message" => implode("\n", $erreurs)
+        ];
+    }
+
+    $datas = jsonToArray();
+    // Vérifier que le titre est unique (en ignorant SON titre actuel)
+    foreach ($datas["formation"] as $form) {
+        // Si c'est une autre formation qui a le mêmetitre
+        if ($form['id'] != $formationModifier['id'] && $form['titre'] === $formationModifier['titre']) {
+            return [
+                "error" => true,
+                "message" => "Ce titre existe déjà dans une formation : "
+            ];
+        }
+    }
+
+    // modification 
+    foreach ($datas["formation"] as $index => $form) {
+        if ($form['id'] == $formationModifier["id"]) {
+            $datas["formation"][$index] = $formationModifier;
+            arrayToJson($datas);
+            return [
+                "error" => false,
+                "message" => "Formation modifiée avec succès"
+            ];
+        }
+    }
+    return [
+        "error" => true,
+        "message" => "Formation non trouvée"
+    ];
+}
 demarrer();
 
 
