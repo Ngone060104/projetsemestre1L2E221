@@ -611,7 +611,7 @@ function modifierFormation($formationModifier): array
     ];
 }
 
-// Supprimer une formation
+// Fonction Supprimer une formation
 function deleteFormation(): void
 {
     $formations = findAllFormation();
@@ -643,7 +643,7 @@ function deleteFormation(): void
         echo "Suppression annulée.\n";
         return;
     }
-    // Procéder à la suppression
+    // Procéder à la suppression de la formation
     $datas = jsonToArray();
     // Supprimer la formation par son indice
     unset($datas["formation"][$choix]);
