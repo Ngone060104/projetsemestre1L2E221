@@ -156,6 +156,31 @@ function ajouterEtudiant(): void
 
     echo $resultat['message'] . "\n";
 }
+//fonction qui affiche un etudiant
+function afficheUnEtudiant(array $etudiant): void
+{
+    echo "=================================\n";
+    echo "\tID: " . $etudiant['id'] . "\n";
+    echo "\tNom: " . $etudiant['nom'] . "\n";
+    echo "\tPrenom: " . $etudiant['prenom'] . "\n";
+    echo "\tEmail: " . $etudiant['email'] . "\n";
+    echo "\tAdresse: " . $etudiant['adresse'] . "\n";
+    echo "\tTelephone: " . $etudiant['telephone'] . "\n";
+    echo "=================================\n";
+}
+
+//fonction qui affiche tous les etudiants
+function afficheTousLesEtudiants(array $etudiants): void
+{
+    foreach ($etudiants as  $etudiant) {
+        if (empty($etudiants)) {
+            echo "Aucun étudiant à afficher\n";
+            return;
+        } else {
+            afficheUnEtudiant($etudiant);
+        }
+    }
+}
 function saisiEtModifierEtudiant(): array
 {
 
