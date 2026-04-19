@@ -1,0 +1,79 @@
+{
+    "etudiant": [
+        {
+            "id": 1,
+            "nom": "Diop",
+            "prenom": "Jean",
+            "adresse": "Dakar",
+            "email": "jeandiop@example.com",
+            "telephone": "+221 77 433 87 59"
+        },
+        {
+            "id": 2,
+            "nom": "Diagne",
+            "prenom": "Moussa",
+            "adresse": "Thies",
+            "email": "moussandiaye@example.com",
+            "telephone": "+221 77 847 74 65"
+        },
+        {
+            "id": 3,
+            "nom": "Gaye",
+            "prenom": "Awa",
+            "adresse": "Dakar",
+            "email": "awagaye@example.com",
+            "telephone": "+221 77 157 78 53"
+        },
+        {
+            "id": 4,
+            "nom": "Niang",
+            "prenom": "Alassane",
+            "adresse": "Medina",
+            "email": "AN@gmail.com",
+            "telephone": "+221 77 921 38 97"
+        },
+        {
+            "id": 5,
+            "nom": "Fall",
+            "prenom": "Abdoul",
+            "email": "abdou@gmail.com",
+            "adresse": "yoff",
+            "telephone": "705294655"
+        },
+        {
+            "id": 6,
+            "nom": "Leye",
+            "prenom": "Abi",
+            "email": "aby@gmail.com",
+            "adresse": "medina",
+            "telephone": "771010101"
+        }
+    ],
+    "formation": [
+        {
+            "id": 1,
+            "titre": "Developpement Web",
+            "description": "Apprentissage de HTML, CSS, JavaScript et PHP\/MySQL."
+        },
+        {
+            "id": 2,
+            "titre": "Data Science",
+            "description": "Analyse de donnees, statistiques et Machine Learning avec Python."
+        },
+        {
+            "id": 3,
+            "titre": "Cybersecurite",
+            "description": "Protection des systemes, reseaux et gestion des vulnerabilites."
+        },
+        {
+            "id": 4,
+            "titre": "Marketing Digital",
+            "description": "Strategies SEO, gestion des reseaux sociaux et publicite en ligne."
+        },
+        {
+            "id": 5,
+            "titre": "Gestion de Projet",
+            "description": "Methodologies Agile et outils de planification de projets."
+        }
+    ]
+}
