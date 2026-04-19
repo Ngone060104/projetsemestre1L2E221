@@ -610,6 +610,68 @@ function modifierFormation($formationModifier): array
         "message" => "Formation non trouvée"
     ];
 }
+
+// Fonction Supprimer une formation
+function deleteFormation(): void
+{
+    $formations = findAllFormation();
+    // Vérifier s'il y a des formations
+    if (empty($formations)) {
+        echo "Aucune formation à supprimer\n";
+        return;
+    }
+    // liste des formations
+    afficheTousLesFormations($formations);
+
+    $choix = (int)readline("\n Choisir le numéro de la formation à supprimer : ");
+    if (!isset($formations[$choix])) {
+        echo "Formation non trouvée . \n";
+        return;
+    }
+    $formation = $formations[$choix];
+    echo "\n --  Étudiant à supprimer -- \n";
+    echo "ID: " . $formation['id'] . "\n";
+    echo "Titre: " . $formation['titre'] . "\n";
+    echo "Description: " . $formation['description'] . "\n";
+
+    // Demander confirmation
+    echo "\n Attention ! Cette action est irréversible.\n" ;
+    $confirmation = readline("Confirmez-vous la suppression de cette formation ? (o/N) : ");
+
+    // Vérifier la confirmation (o, O, oui, OUI)
+    if (strtolower($confirmation) !== 'o' && strtolower($confirmation) !== 'oui') {
+        echo "Suppression annulée.\n";
+        return;
+    }
+    // Procéder à la suppression de la formation
+    $datas = jsonToArray();
+    // Supprimer la formation par son indice
+    unset($datas["formation"][$choix]);
+     // Réindexer le tableau (optionnel, pour éviter les trous)
+    $datas["formation"] = array_values($datas["formation"]);
+    // Sauvegarder
+    arrayToJson($datas);
+    echo "Formation supprimée avec succés \n";
+}
+function consulterToutesLesFormations() : void{
+    $formations = findAllFormation();
+     if (empty($formations)) {
+        echo "\nAucune formation disponible pour le moment.\n";
+        return;
+    }
+    
+     echo "\n========== LISTE DES FORMATIONS ==========\n";
+     afficheTousLesFormations($formations);
+      echo "\nTotal: " . count($formations) . " formation(s) disponible(s)\n";
+}
+function rechercherFormation() : void{
+    $formations = findAllFormation();
+      if (empty($formations)) {
+        echo "\nAucune formation disponible pour le moment.\n";
+        return;
+    }
+    
+}
 demarrer();
 
 
