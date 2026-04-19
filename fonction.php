@@ -423,7 +423,6 @@ function menuGestionFormation(): void
                     echo $resultat["message"];
                 }
                 break;
-                break;
             case '3':
                 deleteFormation();
                 break;
