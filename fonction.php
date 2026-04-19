@@ -437,5 +437,5 @@ function demarrer(): void
         }
     }
 }
-
+demarrer();
 
