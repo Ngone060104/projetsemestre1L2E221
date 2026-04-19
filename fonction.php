@@ -441,6 +441,7 @@ function demarrer(): void
 function afficheUneFormation(array $form): void
 {
     echo "-------------------------------------\n";
+    echo "\tId:" . $form["id"] . "\n";
     echo "\tTitre: " . $form['titre'] . "\n";
     echo "\tDescription: " . $form['description'] . "\n";
     echo "-------------------------------------\n";
