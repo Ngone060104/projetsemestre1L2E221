@@ -403,8 +403,8 @@ function menuFormation(): void
                 // supprimerFormation();
                 break;
             case '4':
-                // $formations = findAllFormation();
-                // afficheTousLesFormations($formations);
+                $formations = findAllFormation();
+                afficheTousLesFormations($formations);
                 break;
             case '5':
                 echo "Retour au menu principal...\n";
@@ -437,5 +437,22 @@ function demarrer(): void
         }
     }
 }
+//fonction qui affiche une formation
+function afficheUneFormation(array $form): void
+{
+    echo "-------------------------------------\n";
+    echo "\tTitre: " . $form['titre'] . "\n";
+    echo "\tDescription: " . $form['description'] . "\n";
+    echo "-------------------------------------\n";
+}
+
+//fonction qui affiche tous les formations
+function afficheTousLesFormations(array $formations): void
+{
+    foreach ($formations as  $form) {
+        afficheUneFormation($form);
+    }
+}
+
 demarrer();
 
