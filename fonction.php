@@ -653,6 +653,25 @@ function deleteFormation(): void
     arrayToJson($datas);
     echo "Formation supprimée avec succés \n";
 }
+function consulterToutesLesFormations() : void{
+    $formations = findAllFormation();
+     if (empty($formations)) {
+        echo "\nAucune formation disponible pour le moment.\n";
+        return;
+    }
+    
+     echo "\n========== LISTE DES FORMATIONS ==========\n";
+     afficheTousLesFormations($formations);
+      echo "\nTotal: " . count($formations) . " formation(s) disponible(s)\n";
+}
+function rechercherFormation() : void{
+    $formations = findAllFormation();
+      if (empty($formations)) {
+        echo "\nAucune formation disponible pour le moment.\n";
+        return;
+    }
+    
+}
 demarrer();
 
 
