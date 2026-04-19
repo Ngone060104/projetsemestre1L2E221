@@ -464,6 +464,23 @@ function TitreUnique(string $titre): bool
     }
     return true;
 }
+function genererNouvelIdFormation(): int
+{
+    $formations = findAllFormation();
+    
+    if (empty($formations)) {
+        return 1;
+    }
+    
+    $maxId = 0;
+    foreach ($formations as $formation) {
+        if ($formation['id'] > $maxId) {
+            $maxId = $formation['id'];
+        }
+    }
+    
+    return $maxId + 1;
+}
 demarrer();
 
 
