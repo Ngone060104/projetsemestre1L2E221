@@ -454,7 +454,16 @@ function afficheTousLesFormations(array $formations): void
         afficheUneFormation($form);
     }
 }
-
+function TitreUnique(string $titre): bool
+{
+    $formations = findAllFormation();
+    foreach ($formations as $form) {
+        if ($form["titre"] === $titre) {
+            return false;
+        }
+    }
+    return true;
+}
 demarrer();
 
 
