@@ -42,3 +42,36 @@ function genererNouvelId(): int
 
     return $maxId + 1; // Incrémenter
 }
+// ============ FONCTIONS DE VALIDATION (validation-donnees) ============
+// Valider le téléphone avec regex 
+function ValiderTelephone(string $telephone): bool
+{
+    $pattern = '/^(77|78|75|70|76)[0-9]{7}$/';
+    if (preg_match($pattern, $telephone)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Valider l'email avec regex
+function validerEmail(string $email): bool
+{
+    $pattern = '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+    if (preg_match($pattern, $email)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+// Vérifier si l'email est unique 
+function emailUnique(string $email): bool
+{
+    $all = findAllEtudiants();
+    foreach ($all as $a) {
+        if ($a["email"] === $email) {
+            return false;
+        }
+    }
+    return true;
+}
