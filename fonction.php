@@ -181,7 +181,6 @@ function afficheTousLesEtudiants(array $etudiants): void
         }
     }
 }
-
 function saisiEtModifierEtudiant(): array
 {
 
