@@ -333,3 +333,109 @@ function deleteEtudiant(): void
     arrayToJson($datas);
     echo "Etudiant supprimer avec succés \n";
 }
+function MenuPrincipal(): void
+{
+    echo "--------- Menu Principal -------- \n";
+    echo "1 - Gestion des Etudiants \n";
+    echo "2 - Gestion des Formations \n";
+    echo "3 - Quitter \n";
+}
+function menuEtudiant(): void
+{
+    while (true) {
+        echo "\n------ Gestion des Étudiants ------\n";
+        echo "1 - Ajouter un étudiant\n";
+        echo "2 - Modifier un étudiant\n";
+        echo "3 - Supprimer un étudiant\n";
+        echo "4 - Lister les étudiants \n";
+        echo "5 - Quitter (retour au menu principal)\n";
+        echo "----------------------------------\n";
+        $choix = readline("Votre choix : ");
+
+        switch ($choix) {
+            case '1':
+                ajouterEtudiant();
+                break;
+            case '2':
+                $resultat = saisiEtModifierEtudiant();
+                if ($resultat["error"]) {
+                    echo $resultat["message"];
+                } else {
+                    echo $resultat["message"];
+                }
+                break;
+            case '3':
+                deleteEtudiant();
+                break;
+            case '4':
+                $all = findAllEtudiants();
+                afficheTousLesEtudiants($all);
+                break;
+            case '5':
+                echo "Retour au menu principal...\n";
+                return; // Retourne au menu principal
+            default:
+                echo "Choix invalide. Veuillez réessayer.\n";
+        }
+    }
+}
+
+function menuFormation(): void
+{
+    while (true) {
+        echo "\n------ Gestion des Formations ------\n";
+        echo "1 - Ajouter une formation\n";
+        echo "2 - Modifier une formation\n";
+        echo "3 - Supprimer une formation\n";
+        echo "4 - Lister les formation\n";
+        echo "5 - Quitter (retour au menu principal)\n";
+        echo "------------------------------------\n";
+        $choix = readline("Votre choix : ");
+
+        switch ($choix) {
+            case '1':
+                // ajouterFormation();
+                break;
+            case '2':
+                // modifierFormation();
+                break;
+            case '3':
+                // supprimerFormation();
+                break;
+            case '4':
+                // $formations = findAllFormation();
+                // afficheTousLesFormations($formations);
+                break;
+            case '5':
+                echo "Retour au menu principal...\n";
+                return; // Retourne au menu principal
+            default:
+                echo "Choix invalide. Veuillez réessayer.\n";
+        }
+    }
+}
+// fonction demarrer
+function demarrer(): void
+{
+    while (true) {
+        MenuPrincipal(); // Afficher le menu principal
+
+        $choix = readline("Votre choix : ");
+
+        switch ($choix) {
+            case '1':
+                menuEtudiant(); // Aller au menu étudiant
+                break;
+            case '2':
+                menuFormation(); // Aller au menu formation
+                break;
+            case '3':
+                echo "Quitter!\n";
+                exit(0); // Quitter le programme
+            default:
+                echo "Choix invalide. Veuillez réessayer.\n";
+        }
+    }
+}
+
+
