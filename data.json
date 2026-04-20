@@ -47,6 +47,14 @@
             "email": "aby@gmail.com",
             "adresse": "medina",
             "telephone": "771010101"
+        },
+        {
+            "id": 7,
+            "nom": "Diop",
+            "prenom": "Awa",
+            "email": "awa@gmai.com",
+            "adresse": "Thies",
+            "telephone": "771001010"
         }
     ],
     "formation": [
